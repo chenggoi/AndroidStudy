@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:stretchColumns="1">
+
+    <TableRow>
+
+        <TextView
+            android:layout_height="wrap_content"
+            android:text="Accont:" />
+
+        <EditText
+            android:layout_height="wrap_content"
+            android:hint="Input" />
+    </TableRow>
+
+    <TableRow>
+
+        <TextView
+            android:layout_height="wrap_content"
+            android:text="Password:" />
+
+        <EditText
+            android:layout_height="wrap_content"
+            android:inputType="textPassword" />
+    </TableRow>
+
+    <TableRow>
+
+        <Button
+
+            android:layout_height="wrap_content"
+            android:layout_span="2"
+            android:text="Login" />
+    </TableRow>
+
+    <!--<Button-->
+    <!--android:id="@+id/send"-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:layout_centerInParent="true"-->
+    <!--android:text="send" />-->
+
+    <!--<Button-->
+    <!--android:id="@+id/button2"-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:layout_above="@id/send"-->
+    <!--android:layout_toLeftOf="@id/send"-->
+    <!--android:text="button2" />-->
+
+    <!--<Button-->
+    <!--android:id="@+id/button3"-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:layout_above="@id/send"-->
+    <!--android:layout_toRightOf="@id/send"-->
+    <!--android:text="button3" />-->
+
+    <!--<Button-->
+    <!--android:id="@+id/button4"-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:layout_below="@id/send"-->
+    <!--android:layout_toLeftOf="@id/send"-->
+    <!--android:text="button4" />-->
+
+    <!--<Button-->
+    <!--android:id="@+id/button5"-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:layout_below="@id/send"-->
+    <!--android:layout_toRightOf="@id/send"-->
+    <!--android:text="button5" />-->
+
+</TableLayout>
