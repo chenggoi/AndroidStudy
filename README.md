@@ -22,7 +22,7 @@
 
 ###AndroidManifest
 
-- 在**\<application\>\<\/application\>**标签中注册当前活动
+- 在**\<application\>\</application\>**标签中注册当前活动
 
 ```
 
@@ -39,9 +39,9 @@
 
 - **android:name**:具体注册的活动名称
 - **android:label**:程序的快捷方式名称
-- **\<action android:name="android.intent.action.MAIN" \/\>**:声明该活动为主活动，打开app的第一页面
-- **\<category android:name="android.intent.category.LAUNCHER" \/\>**:该程序会显示在程序列表中，即创建图标
-- **\<data android:scheme="http"\/\>**:定义该活动能够相拥的数据协议，http是网络协议，geo是地理位置，tel是电话
+- **\<action android:name="android.intent.action.MAIN" /\>**:声明该活动为主活动，打开app的第一页面
+- **\<category android:name="android.intent.category.LAUNCHER" /\>**:该程序会显示在程序列表中，即创建图标
+- **\<data android:scheme="http"/\>**:定义该活动能够相拥的数据协议，http是网络协议，geo是地理位置，tel是电话
 
 ###Intent
 
@@ -135,6 +135,28 @@
 - **TableRow**:表示在表各中添加一行，在TableRow中每加入一个控件，就添加了一列。TableRow中的控件不能指定宽度
 - **android:inputType**:设置EditText的输入格式
 - **android:layout_span**:合并单元格
+
+##2016年7月15日
+
+###Layout
+
+- **android:background**:为控件或布局指定一个背景，可以使用颜色或者图片来填充
+- **android:layout_margin**:指定控件在上下左右方向上的偏移距离，也可以使用**marginTop**等来指定特定方向的偏移距离
+
+###自定义控件
+
+- **TitleLayout继承自LinearLayout**，重写其构造函数，当布局被调用时会调用该构造函数，并执行其中对于控件的操作
+- **LayoutInflater.from(context).inflate(R.layout.title, this)**:通过LayoutInflater的from()方法，构建一个LayoutInflater对象，然后调用inflate()方法动态加载一个布局文件。两个参数为**要加载的布局文件id，加载好的布局文件的父布局**
+- 通过指定**完整包名**在其他布局中添加该自定义控件
+
+```
+
+    <com.chenggoi.androidstudy.TitleLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+    </com.chenggoi.androidstudy.TitleLayout>
+
+```
 
 
 
