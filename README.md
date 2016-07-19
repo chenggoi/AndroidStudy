@@ -158,6 +158,33 @@
 
 ```
 
+##2016年7月19日
+
+###Layout
+
+- **\<ListView\>**:列表控件
+- **px**:以像素为单位
+- **pt**:以磅为单位，以上两种单位会存在因屏幕分辨率不同而产生的适配问题，因此多用于文字
+- **dp**:密度无关像素，也称作**dip**，在不同密度(屏幕每英寸所包含的像素数，通常以dpi为单位)的屏幕中的显示比例保持一直。根据Android规定，在160dpi的屏幕上，1dp=1px，在320dpi的屏幕上，1dp=2px。
+- **sp**:可伸缩像素，采用与dp相同的设计理念来解决文字大小的适配问题
+
+
+###Activity
+
+- **ArrayAdapter\<\>**:通过泛型来指定适配器的类型，并在构造函数中将适配的数据传入即可
+- **listView.setAdapter()**:将构建好的适配器对象传递进去，建立ListView与数据之间的关联
+- **listView.setOnItemClickListener()**:为ListView上的Item注册一个监听器，对item的点击事件进行监听。在**onItemClick()**方法中，可以根据position来判断用户点击的是哪一个item子项。
+- **getResources().getDisplayMetrics().xdpi**:获取x轴方向上的屏幕密度
+- **getResources().getDisplayMetrics().ydpi**:获取y轴方向上的屏幕密度
+
+###Adapter
+
+- **getView()**:重写Adapter的该方法，该方法在每个子项被滚动到的时候会被调用，并返回每个子项的布局。其参数中的**convertView**用于将之前加载好的布局进行缓存，以便日后进行重用，提高效率
+- **getItem()**:通过该方法可以得到当前子项的实例
+- **LayoutInflater.from()**:该方法用于为该子项加载传入的布局
+- **imageView.setImageResource**:设置显示的图片
+- **textView.setText**:设置显示的文字
+- **提高ListView加载效率**:对控件实例进行缓存。创建一个ViewHolder类，将全部控件实例放于其中，然后调用View的setTag()方法，将ViewHolder对象储存在View中。当convertView不为空时调用View的getTag()方法将ViewHolder重新取出，省去每次都要findViewById().
 
 
 
