@@ -1,5 +1,6 @@
 # AndroidStudy
 
+##注：学习笔记源于《第一行代码》，感谢作者
 
 ##2016年7月11日
 ###Activity
@@ -90,6 +91,7 @@
 ###Activity
 
 - **生命周期**：onCreate、onStart、onResume、onPause、onStop、onDestory、onRestart
+- ![Activity生命周期][https://developer.android.com/images/training/basics/basic-lifecycle.png]
 - **Bundle类型**:提供了一系列方法用于保存数据，如**putString()**方法保存字符串。每个保存方法需传入两个参数，一个是一个参数是键，用于从Bundle中取值，另一个是要保存的内容
 - **onSaveInstanceState()**:用于在活动被系统回收前保存活动中的数据，将数据存于Bundle类型的变量中，等到活动再次调用onCerate时作为参数传入，并携带有之前保存的全部数据
 - **getClass().getSimpleName()**:获取当前实例的类名
@@ -186,8 +188,35 @@
 - **textView.setText**:设置显示的文字
 - **提高ListView加载效率**:对控件实例进行缓存。创建一个ViewHolder类，将全部控件实例放于其中，然后调用View的setTag()方法，将ViewHolder对象储存在View中。当convertView不为空时调用View的getTag()方法将ViewHolder重新取出，省去每次都要findViewById().
 
+##2016年7月22日
 
+###Layout
 
+- **\<fragment\>**:碎片布局
+- **android:name**:显式指明需要添加的碎片类名
+- **限定符**:通过对layout进行限定，来根据设备屏幕大小动态加载布局，如**layout-large**,**layout-ldpi**,**layout-land**分别对应屏幕大小、屏幕分辨率、屏幕横竖屏
+- **android:padding**:给控件的周围加上补白，使文本不会紧靠在边缘上
+- **android:singleLine**:设置为true时表示文字单行显示
+- **android:ellipsize**:设定当文本超出控件宽度时的缩略方式，可选值有**start(省略号在开头)、end(省略号在结尾)、middle(省略号在中间)、marquee(获取焦点时，以跑马灯的形式滚动显示)**
+
+###Fragment
+
+- **onCreateView()**:与Activity的onCreate()方法作用相同,为碎片加载布局时调用
+- **getActivity()**:获取与当前碎片关联的活动实例，从而调用活动中的方法。而且当fragment中需要context对象时，也可以使用该方法
+- **onAttach()**:当碎片和活动建立关联的时候调用
+- **onActivityCreated()**:确保与碎片相关联的活动已经创建完毕的时候调用
+- **onDestoryView()**:当与碎片关联的视图被移除的时候调用
+- **onDetach()**:当碎片和活动解除关联的时候调用
+- ![Fragment生命周期][https://developer.android.com/images/fragment_lifecycle.png]
+
+###Activity
+
+- **getFragmentManager()**:获取FragmentManager实例
+- **fragmentManager.beginTransaction()**:开启一个fragment事物，用于对fragment进行添加,移除,替换,以及执行其他动作
+- **transaction.replace()**:向容器内添加碎片，两个参数为**传入容器的id，待添加的碎片实例**
+- **transaction.commit()**:提交执行事务
+- **transaction.addToBackStack()**:接收一个名字用于描述返回栈的状态，当按下back键时，不会直接退出fragment页面，而是返回上一个fragment页面
+- **fragmentManager.findFragmentById()**:通过布局ID来获取Fragment实例，从而调用Fragment中的方法
 
 
 
