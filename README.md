@@ -91,7 +91,9 @@
 ###Activity
 
 - **生命周期**：onCreate、onStart、onResume、onPause、onStop、onDestory、onRestart
-- ![Activity生命周期][https://developer.android.com/images/training/basics/basic-lifecycle.png]
+
+![Activity生命周期][https://developer.android.com/images/training/basics/basic-lifecycle.png]
+
 - **Bundle类型**:提供了一系列方法用于保存数据，如**putString()**方法保存字符串。每个保存方法需传入两个参数，一个是一个参数是键，用于从Bundle中取值，另一个是要保存的内容
 - **onSaveInstanceState()**:用于在活动被系统回收前保存活动中的数据，将数据存于Bundle类型的变量中，等到活动再次调用onCerate时作为参数传入，并携带有之前保存的全部数据
 - **getClass().getSimpleName()**:获取当前实例的类名
@@ -207,7 +209,8 @@
 - **onActivityCreated()**:确保与碎片相关联的活动已经创建完毕的时候调用
 - **onDestoryView()**:当与碎片关联的视图被移除的时候调用
 - **onDetach()**:当碎片和活动解除关联的时候调用
-- ![Fragment生命周期][https://developer.android.com/images/fragment_lifecycle.png]
+
+![Fragment生命周期][https://developer.android.com/images/fragment_lifecycle.png]
 
 ###Activity
 
@@ -218,6 +221,33 @@
 - **transaction.addToBackStack()**:接收一个名字用于描述返回栈的状态，当按下back键时，不会直接退出fragment页面，而是返回上一个fragment页面
 - **fragmentManager.findFragmentById()**:通过布局ID来获取Fragment实例，从而调用Fragment中的方法
 
+##2016年7月26日
+
+###Broadcast
+
+- **标准广播(Normal broadcasts)**:完全异步执行的广播，在广播发出后，所有的广播接收器几乎都会在同一时间接收到这条广播信息。效率比较高但是无法被截断
+- **有序广播(Ordered broadcasts)**:同步执行广播，在广播发出后，同一时刻只会有一个广播接收器能够收到这条消息，当这个广播接收器中的逻辑执行完毕后，广播才会继续传递。此时广播有优先级顺序，优先级高的接收器可以对广播进行截断
+- **BroadcastReceiver**:广播接收者，当接收到广播时，会执行onRecive()方法，在onReceive()方法中，尽量不要执行过多操作，否则长时间没有结束会报错
+- **intentFilter.addAction("")**:添加要监听的广播的action
+- **registerReceiver()**:对Receiver进行动态注册，将Receiver实例和IntentFilter实例都传进去
+- **unregisterReceiver()**:动态注册的广播必须在onDestory()方法中调用该方法取消注册
+- **getSystemService()**:获取系统服务的实例
+- **connectivityManager.getActiveNetworkInfo()**:得到NetworkInfo实例
+- **networkInfo.isAvailable()**:判断当前是否有网络
+- **sendBroadcast()**:发送一条标准广播，参数为**指定了action的Intent实例**
+- **sendOrderedBroadcast()**:发送一条有序广播，参数为**Intent,与权限相关的字符串**
+- **abortBroadcast()**:将该条广播截断，后面的广播接收器无法再收到该条广播
+- **LocalBroadcastManager.getInstance()**:获取一个LocalBroadcastManager的实例，用于管理本地广播。本地广播只能在同一个程序内被接收，并且无法通过静态注册的方式来接收
+- **localBroadcastManager.sendBroadcast()**:发送本地广播
+- **localBroadcastManager.registerReceiver()**:注册本地广播
+- **localBroadcastManager.unregisterReceiver()**:销毁本地广播
+
+###AndroidManifest
+
+- **\<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" /\>**:添加查询系统网络状态的权限
+- **\<receiver\>**:静态注册广播接收器，通过**android:name**指定具体注册哪一个广播接收器，**\<intent-filter\>**标签内加入想要接收的广播
+- **\<uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" /\>**:添加监听系统开机广播的权限
+- **android:priority**:为广播接收器设置优先级，有序广播会按照优先级顺序进行接收
 
 
 
