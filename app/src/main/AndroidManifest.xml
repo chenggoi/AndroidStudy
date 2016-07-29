@@ -55,13 +55,15 @@
         <activity
             android:name=".DialogActivity"
             android:theme="@android:style/Theme.Dialog" />
-        <activity android:name=".broadcasts.MainActivity">
+        <activity android:name=".PerferenceActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
 
+        <activity android:name=".FilePersistenceTest.FilePersistenceMainActivity" />
+        <activity android:name=".broadcasts.MainActivity" />
         <activity android:name=".UILayoutActivity" />
         <activity android:name=".UITestActivity" />
         <activity android:name=".Fragment.MainActivity" />

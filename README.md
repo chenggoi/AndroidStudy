@@ -91,9 +91,7 @@
 ###Activity
 
 - **生命周期**：onCreate、onStart、onResume、onPause、onStop、onDestory、onRestart
-
-![Activity生命周期][https://developer.android.com/images/training/basics/basic-lifecycle.png]
-
+- ![Activity生命周期](https://developer.android.com/images/training/basics/basic-lifecycle.png)
 - **Bundle类型**:提供了一系列方法用于保存数据，如**putString()**方法保存字符串。每个保存方法需传入两个参数，一个是一个参数是键，用于从Bundle中取值，另一个是要保存的内容
 - **onSaveInstanceState()**:用于在活动被系统回收前保存活动中的数据，将数据存于Bundle类型的变量中，等到活动再次调用onCerate时作为参数传入，并携带有之前保存的全部数据
 - **getClass().getSimpleName()**:获取当前实例的类名
@@ -209,8 +207,7 @@
 - **onActivityCreated()**:确保与碎片相关联的活动已经创建完毕的时候调用
 - **onDestoryView()**:当与碎片关联的视图被移除的时候调用
 - **onDetach()**:当碎片和活动解除关联的时候调用
-
-![Fragment生命周期][https://developer.android.com/images/fragment_lifecycle.png]
+- ![Fragment生命周期](https://developer.android.com/images/fragment_lifecycle.png)
 
 ###Activity
 
@@ -248,6 +245,28 @@
 - **\<receiver\>**:静态注册广播接收器，通过**android:name**指定具体注册哪一个广播接收器，**\<intent-filter\>**标签内加入想要接收的广播
 - **\<uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" /\>**:添加监听系统开机广播的权限
 - **android:priority**:为广播接收器设置优先级，有序广播会按照优先级顺序进行接收
+
+##2016年7月29日
+
+###数据持久化存储
+
+- Android系统中三种简单实现持久化存储的方式：**文件存储、SharedPreference存储、数据库存储**
+- **文件存储**:Android中最基本的数据存储方式，不对存储内容进行任何的格式化处理，所有数据原封不动的保存在文件当中
+- **openFileOutput()**:用于将数据存储到指定文件中，两个参数为**文件名，存储模式**，存储模式分别为**"MOVE_PRIVATE"同文件名覆盖、"MOVE_APPEND"同文件名追加**，默认会保存到**/data/data/\<package name\>/files**目录下
+- **openFileInput()**:用于读取指定文件的数据，参数为**文件名**，返回一个FileInputStream对象
+- **editText.setSelection()**:将EditText的光标移动到指定的位置
+- **TextUtils.isEmpty()**:判断字符串是否为空，自带两种空值判断
+- **SharedPreference存储**:使用键值对的方式来存储数据，支持多种不同数据类型存储
+- **getSharedPreferences()**:两个参数为**文件的名称，操作模式**，获取SharedPerferences对象
+- **SharedPerferences.edit()**:获取一个SharedPerferences.Editor对象，然后通过**editor.putString()**等方法往其中添加数据
+- **editor.commit()**:提交添加的数据，数据存储在**/data/data/\<package name\>/shared_prefs/**目录下
+- **sharedPreferences.getString()**:根据键值获取SharedPerferences中保存的数据
+
+
+
+
+
+
 
 
 
