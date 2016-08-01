@@ -262,6 +262,30 @@
 - **editor.commit()**:提交添加的数据，数据存储在**/data/data/\<package name\>/shared_prefs/**目录下
 - **sharedPreferences.getString()**:根据键值获取SharedPerferences中保存的数据
 
+##2016年8月1日
+
+###SQLiteOpenHelper
+
+- **SQLiteOpenHelper**:用于管理数据库的一个抽象类，继承该类并实现其抽象方法，用于对数据库进行创建和升级操作
+- **getReadableDatabase()**:创建或打开一个数据库，并返回一个可对数据库进行读写操作的对象。当数据库不可写入的时候，返回对象以只读方式打开数据库
+- **getWritableDatabase()**:创建或打开一个数据库，并返回一个可对数据库进行读写操作的对象。当数据库不可写入的时候，将抛出异常
+- **数据库建表语句**:**integer**整型、**text**文本类型、**real**浮点型、**primary key**主键、**autoincrement**id自增长
+- **db.execSQL()**:执行除了查询以外的SQL语句
+- **onUpgrade()**:当构造函数中传入的版本号比当前数据库的版本号高时，会执行升级方法
+- **db.insert()**:向数据表中插入数据，三个参数为**表名，为指定添加数值列的默认赋值，携带添加数据的ContentValues对象**
+- **values.put()**:向ContentValues中添加数据，两个参数为**相应表的列名，待添加的数据**
+- **db.update()**:对数据库中的数据进行更新，四个参数分别为**表名，携带更新数据的ContentValues对象，SQL的where语句，指定where语句的条件**
+- **db.delete()**:删除数据库中的数据，三个参数为**表名，SQL的where语句，指定where语句的条件**
+- **db.query()**:查询数据库中的数据，七个参数为**表名，查询哪列，查询哪行，查询哪行，指定需要区group by的列，group by之后进行过滤，查询结果排序方式**，查询结果以Cursor对象返回
+- **cursor.moveToFirst()**:移动到第一行
+- **cursor.moveToNext()**:移动到下一行
+- **cursor.getColumnIndex()**:获取某一列在表中对应位置的索引
+- **cursor.getString()**:根据位置索引获取数据
+- **cursor.close()**:关闭Cursor
+- **db.rawQuery()**:使用SQL语句查询数据库时使用该方法
+
+
+
 
 
 
