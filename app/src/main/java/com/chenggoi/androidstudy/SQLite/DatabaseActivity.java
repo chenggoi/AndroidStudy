@@ -80,5 +80,25 @@ public class DatabaseActivity extends Activity {
                 cursor.close();
             }
         });
+        Button replaceData = (Button) findViewById(R.id.replace_data);
+        replaceData.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                SQLiteDatabase db = databaseHelper.getWritableDatabase();
+                db.beginTransaction();
+                try {
+                    db.delete("book", null, null);
+                    ContentValues values = new ContentValues();
+                    values.put("name", "aaaa");
+                    values.put("author", "sss");
+                    values.put("pages", 777);
+                    db.setTransactionSuccessful();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                } finally {
+                    db.endTransaction();
+                }
+            }
+        });
     }
 }

@@ -3,6 +3,7 @@
 
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <uses-permission android:name="android.permission.READ_CONTACTS" />
 
     <application
         android:allowBackup="true"
@@ -55,14 +56,15 @@
         <activity
             android:name=".DialogActivity"
             android:theme="@android:style/Theme.Dialog" />
-        <activity android:name=".SQLite.DatabaseActivity">
+        <activity android:name=".Content.ContentActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
 
-        <activity android:name=".PerferenceActivity"/>
+        <activity android:name=".SQLite.DatabaseActivity" />
+        <activity android:name=".PerferenceActivity" />
         <activity android:name=".FilePersistenceTest.FilePersistenceMainActivity" />
         <activity android:name=".broadcasts.MainActivity" />
         <activity android:name=".UILayoutActivity" />

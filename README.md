@@ -284,6 +284,30 @@
 - **cursor.close()**:关闭Cursor
 - **db.rawQuery()**:使用SQL语句查询数据库时使用该方法
 
+##2016年8月2日
+
+###SQLiteOpenHelper
+
+- **db.beginTransaction()**:开启一个事务，在返回事务成功之前操作中断的话，会还原旧数据
+- **db.setTransactionSuccessful()**:表示事务执行成功
+- **db.endTransaction()**:结束事务
+
+###Content Provider
+
+- **内容Uri**:内容Uri通常由**conten://权限/路径**组成，用于确定想要访问哪张表里的数据
+- **Uri.parse()**:将内容Uri字符串解析成**Uri对象**
+- **getContentResolver()**:获取ContentResolver实例，用于对提供ContentProvider的Uri进行**insert(),delete(),update(),query()**操作
+- **onCreate()**:初始化内容提供器，通常会在这里完成数据库的创建和升级等操作。只有在ContentResolver尝试访问程序中的数据时才会进行初始化操作
+- **uriMatcher.addURI()**:用于匹配内容Uri，三个参数为**权限，路径，一个自定义代码**，可以传入通配符
+- **uriMatcher.match()**:通过Uri对象匹配所对应的自定义代码，从而判断出调用方期盼访问的数据
+- **getType()**:用于获取Uri对应的MIME字符串，该字符串主要由三个部分组成：1.必须以**vnd.**开头；2如果内容URI以路径结尾，则后接**android.cursor.dir/**,如果以id结尾，则后接**android.cursor.item/**；3.最后接上**vnd.\<authority\>\<path\>**
+- **uri.getPathSegments()**:将uri以“/”符号进行分割，并把分割后的结果存入一个字符串列表中，第0个位置存的路径，第1个位置存的id
+
+
+###AndroidManifest
+
+- **\<uses-permission android:name="android.permission.READ_CONTACTS" /\>**:获取电话本的读取权限
+
 
 
 
