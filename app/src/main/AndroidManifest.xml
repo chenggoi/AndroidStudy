@@ -56,13 +56,14 @@
         <activity
             android:name=".DialogActivity"
             android:theme="@android:style/Theme.Dialog" />
-        <activity android:name=".Content.ContentActivity">
+        <activity android:name=".Notification.NotificationActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
 
+        <activity android:name=".Content.ContentActivity" />
         <activity android:name=".SQLite.DatabaseActivity" />
         <activity android:name=".PerferenceActivity" />
         <activity android:name=".FilePersistenceTest.FilePersistenceMainActivity" />

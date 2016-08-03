@@ -308,6 +308,19 @@
 
 - **\<uses-permission android:name="android.permission.READ_CONTACTS" /\>**:获取电话本的读取权限
 
+##2016年8月3日
+
+###Notification
+
+- **获取NotificationManager实例**:通过调用Context的getSystemService()方法，接收Context.NOTIFICATION_SERVICE获取
+- **NotificationCompat.Builder**:通过实例化该对象，为通知添加图标和文字内容等
+- **builder.build()**:返回一个包含具体规范的Notification对象
+- **notificationManager.notify()**:将Notification传递给系统，从而使之生效，两个参数为**Notification的专有id，Notification对象**
+- **PendingIntent**:延迟执行的Intent，可根据需求选择使用**getActivity(),getBroadcast(),getService()**方法。四个参数为**Context对象，0，Intent对象，确定PendingIntent的行为**
+- **builder.setContentIntent()**:设置Notification点击时响应的PendingIntent
+- **notificationManager.cancel()**:根据id关闭相应的Notification
+- **builder.setSound()**:显示通知时播放一段音频提示，参数为**音频的uri**
+- **Uri.fromFile()**:将文件的路径转化为Uri
 
 
 
