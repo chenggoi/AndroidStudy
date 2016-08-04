@@ -322,7 +322,23 @@
 - **builder.setSound()**:显示通知时播放一段音频提示，参数为**音频的uri**
 - **Uri.fromFile()**:将文件的路径转化为Uri
 
+##2016年8月4日
 
+###SMS
+
+- **SmsMessage.createFromPdu()**:将pdu字节数组转换为SmsMessage对象
+- **smsMessages[0].getOriginatingAddress()**:用于获取到短信发送方的电话号码
+- **message.getMessageBody()**:用于获取短信的内容
+- **receiverFilter.setPriority()**:设置receiver的优先级
+- **SmsManager.getDefault()**:用于获取SmsManager实例
+- **smsManager.sendTextMessage()**:发送短信，五个参数为**接收人手机号码，service center address，短信内容，发送之后回执，接收之后回执**
+- **PendingIntent.getBroadcast()**:通过广播获取到一个PendingIntent对象
+- **getResultCode()**:获取广播返回的状态
+
+###AndroidManifest
+
+- **\<uses-permission android:name="android.permission.RECEIVE_SMS" /\>**:声明接收短信的权限
+- **\<uses-permission android:name="android.permission.SEND_SMS" /\>**:声明短信发送的权限
 
 
 

@@ -38,7 +38,7 @@ public class NotificationActivity extends Activity implements View.OnClickListen
                 Intent intent = new Intent(this, MainActivity.class);
                 PendingIntent pi = PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_CANCEL_CURRENT);
                 builder.setContentIntent(pi);
-                
+
                 notificationManager.notify(1, builder.build());
 
         }

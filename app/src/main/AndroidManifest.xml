@@ -4,6 +4,8 @@
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
     <uses-permission android:name="android.permission.READ_CONTACTS" />
+    <uses-permission android:name="android.permission.RECEIVE_SMS" />
+    <uses-permission android:name="android.permission.SEND_SMS" />
 
     <application
         android:allowBackup="true"
@@ -56,13 +58,14 @@
         <activity
             android:name=".DialogActivity"
             android:theme="@android:style/Theme.Dialog" />
-        <activity android:name=".Notification.NotificationActivity">
+        <activity android:name=".SMSTest.SMSActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
 
+        <activity android:name=".Notification.NotificationActivity" />
         <activity android:name=".Content.ContentActivity" />
         <activity android:name=".SQLite.DatabaseActivity" />
         <activity android:name=".PerferenceActivity" />
