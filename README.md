@@ -340,8 +340,37 @@
 - **\<uses-permission android:name="android.permission.RECEIVE_SMS" /\>**:声明接收短信的权限
 - **\<uses-permission android:name="android.permission.SEND_SMS" /\>**:声明短信发送的权限
 
+##2016年8月8日
 
+###Picture
 
+- **Environment.getExternalStorageDirectory()**:获取手机sd卡根目录
+- **android.media.action.IMAGE_CAPTURE**:启动相机的隐式action
+- **intent.putExtra(MediaStore.EXTRA_OUTPUT, imageUri)**:设置照片的存储路径
+- **com.android.camera.action.CROP**:启动照片裁剪功能action
+- **BitmapFactory.decodeStream(getContentResolver().openInputStream(imageUri))**:将照片解析成bitmap对象
+- **picture.setImageBitmap(bitmap)**:将照片显示到ImageView控件上
+- **android.intent.action.GET_CONTENT**:启动文件管理器的action，通过**intent.setType("image/*")**限制获取的文件格式
+
+###Media
+
+- **mediaPlayer.setDataSource(file.getPath())**:设置播放的音频文件的位置
+- **mediaPlayer.prepare()**:在开始播放之前调用该方法完成准备工作
+- **mediaPlayer.isPlaying()**:判断当前的media player是否正在播放音频
+- **mediaPlayer.start()**:开始或继续播放音频
+- **mediaPlayer.pause()**:暂停播放音频
+- **mediaPlayer.reset()**:将media player重置到初始状态
+- **mediaPlayer.stop()**:停止播放音频，调用该方法后，media player无法再播放音频
+- **mediaPlayer.release()**:释放掉与media player有关的资源
+
+###Video
+
+- **videoView.isPlaying()**:判断是否正在播放视频
+- **videoView.start()**:开始或继续播放视频
+- **videoView.pause()**:暂停播放视频
+- **videoView.resume()**:将视频重头开始播放
+- **videoView.setVideoPath(file.getPath())**:设置将要播放视频的文件位置
+- **videoView.suspend()**:释放videoView所占用的资源
 
 
 
