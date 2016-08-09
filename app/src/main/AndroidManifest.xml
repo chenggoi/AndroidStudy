@@ -59,13 +59,14 @@
         <activity
             android:name=".DialogActivity"
             android:theme="@android:style/Theme.Dialog" />
-        <activity android:name=".Mediaplayer.MediaPlayerActivity">
+        <activity android:name=".Thread.ThreadActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
 
+        <activity android:name=".PlayVideo.PlayVideoActivity" />
         <activity android:name=".CheoosePic.PicActivity" />
         <activity android:name=".SMSTest.SMSActivity" />
         <activity android:name=".Notification.NotificationActivity" />

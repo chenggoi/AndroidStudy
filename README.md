@@ -372,7 +372,82 @@
 - **videoView.setVideoPath(file.getPath())**:设置将要播放视频的文件位置
 - **videoView.suspend()**:释放videoView所占用的资源
 
+##2016年8月9日
 
+###Thread
+
+```
+
+class MyThread extends Thread {
+
+    @Override
+    public void run() {
+        // 处理具体逻辑
+    }
+}
+
+```
+
+- **new MyThread().start()**:继承Thread方式来定义一个线程并执行线程中的run()方法
+
+```
+
+class MyThread implements Runnable {
+
+    @Override
+    public void run() {
+        //处理具体逻辑
+    }
+}
+
+```
+
+- **new Thread(new MyThread()).start()**:实现Runnable接口的方式来定义一个线程
+
+```
+
+new Thread(new Runnable() {
+
+    @Override
+    public void run() {
+        //处理具体逻辑
+    }
+}).start();
+
+```
+
+- 使用匿名类的方式定义一个线程
+- **Android中的UI是线程不安全的**:更新UI元素的操作必须在主线程中完成
+
+```
+
+private Handler handler = new Handler() {
+    @Override
+    public void handleMessage(Message msg) {
+        switch (msg.what) {
+            case xxx:
+                //更新UI
+                break;
+            default:
+                break;
+            }
+        }
+    };
+
+```
+
+- **handler.sendMessage(message)**:向Handler发送一条Message，在**handleMessage()**中进行接收并对UI更新
+
+###AsyncTask
+
+- **AsyncTask是一个抽象类**:需要创建一个子类继承他，在继承时可以为AsyncTask指定三个泛型参数，分别为**Params,Progress,Result**，并且根据需要，重写内部方法
+- **Params**:在执行AsnycTask时需要传入的参数，可用于在后台任务中使用
+- **Progress**:后台任务执行时，如果需要在界面上显示当前任务的进度，则使用这里指定的泛型作为进度单位
+- **Result**:当任务执行完毕后，如果需要对结果进行返回，则使用这里指定的泛型作为返回值类型
+- **onPreExecute()**:任务开始之前调用，用于进行界面上的一些初始化操作，比如显示进度条
+- **doInBackground(Params...)**:在子线程中执行该方法，任务完成后可通过return语句来返回任务执行结果，类型与Results相同。如需要在该方法中更新UI，可调用**publishProgress(Progress...)**方法来完成
+- **onProgressUpdate(Progress...)**:调用了publishProgress(Progress...)方法之后，会很快调用该方法，在该方法中可以对UI进行操作
+- **onPostExecute(Result)**:当后台任务return返回之后，会调用该方法。返回的数据会传到该方法中，可以利用这些数据对UI进行操作。
 
 
 
