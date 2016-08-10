@@ -15,6 +15,9 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
+        <service android:name=".Service.MyService" />
+        <service android:name=".Service.MyIntentService" />
+
         <receiver android:name=".broadcasts.BootCompleteReceiver">
             <intent-filter>
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
@@ -59,13 +62,14 @@
         <activity
             android:name=".DialogActivity"
             android:theme="@android:style/Theme.Dialog" />
-        <activity android:name=".Thread.ThreadActivity">
+        <activity android:name=".Service.ServiceActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
 
+        <activity android:name=".Thread.ThreadActivity" />
         <activity android:name=".PlayVideo.PlayVideoActivity" />
         <activity android:name=".CheoosePic.PicActivity" />
         <activity android:name=".SMSTest.SMSActivity" />

@@ -321,6 +321,7 @@
 - **notificationManager.cancel()**:根据id关闭相应的Notification
 - **builder.setSound()**:显示通知时播放一段音频提示，参数为**音频的uri**
 - **Uri.fromFile()**:将文件的路径转化为Uri
+- **startForeground(1, builder.build())**:调用该方法会让服务变成前台服务，在系统状态栏显示出来，两个参数为**id，notification对象**
 
 ##2016年8月4日
 
@@ -448,6 +449,30 @@ private Handler handler = new Handler() {
 - **doInBackground(Params...)**:在子线程中执行该方法，任务完成后可通过return语句来返回任务执行结果，类型与Results相同。如需要在该方法中更新UI，可调用**publishProgress(Progress...)**方法来完成
 - **onProgressUpdate(Progress...)**:调用了publishProgress(Progress...)方法之后，会很快调用该方法，在该方法中可以对UI进行操作
 - **onPostExecute(Result)**:当后台任务return返回之后，会调用该方法。返回的数据会传到该方法中，可以利用这些数据对UI进行操作。
+
+##2016年8月10日
+
+###Service
+
+- ![Service生命周期](https://developer.android.com/images/service_lifecycle.png)
+- **onCreate()**:该方法会在服务创建的时候调用
+- **onStartCommand()**:该方法会在每次启动服务时调用
+- **onDestroy()**:该方法会在服务销毁的时候调用
+- **startService(intent)**:启动服务
+- **stopService(intent)**:停止服务
+- **stopSelf()**:在服务中调用，使自身停止
+- **Binder**:通过Binder对象，实现活动与服务之间的交互。服务在整个应用程序范围内是通用的，可以和任何一个activity进行绑定
+- **ServiceConnection类**:用于活动与服务的绑定和解绑，包含两个方法**onServiceConnected()和onServiceDisconnected()**
+- **onServiceConnected()**:在活动与服务成功绑定后调用
+- **onServiceDisconnected()**:在活动和服务成功解绑后调用
+- **bindService(bindIntent, connection, BIND_AUTO_CREATE)**:将活动与服务进行绑定，三个参数为**携带有Service的Intent对象，ServiceConnection实例，标志位**，调用该方法会回调**onBind()**方法
+- **unbindService(connection)**:解除绑定
+- **IntentService**:继承该类的service会在子线程中运行的service，无需担心ANR问题，并且在服务运行完之后会自动关闭，调用**onDestroy()**方法
+- **onHandleIntent()**:该方法在子线程中运行，用以实现IntentService的逻辑
+
+###AndroidManifest
+
+- **\<service\>**:注册该服务使之生效
 
 
 
