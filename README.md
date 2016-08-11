@@ -474,6 +474,87 @@ private Handler handler = new Handler() {
 
 - **\<service\>**:注册该服务使之生效
 
+##2016年8月11日
+
+###WebView
+
+- **webView.getSettings()**:设置浏览器的一些属性
+- **webView.getSettings().setJavaScriptEnabled(true)**:让webview支持JS脚本
+- **webView.ysetWebViewClient()**:用于使用webview接收各种通知和请求
+- **webView.loadUrl()**:参数为需要打开的网址，调用该方法让webview打开相应的网站
+
+###Http
+
+####HttpURLConnection
+
+- **(HttpURLConnection) url.openConnection()**:通过URL对象的openConnection()方法，获取HttpURLConnection实例
+- **connection.setRequestMethod("GET")**:设置HTTP请求所是用的方法
+- **connection.setConnectTimeout(8000)**:设置连接超时
+- **connection.setReadTimeout(8000)**:设置读取超时
+- **connection.getInputStream()**:获取服务器返回的输入流
+- **connection.disconnect()**:关闭HTTP连接
+
+####HttpClient
+
+- **SDK23 已经废弃该方法**
+- **new DefaultHttpClient()**:获取HttpClient实例
+- **new HttpGet()**:创建一个HttpGet对象，发起GET请求
+- **httpClient.execute(httpGet)**:访问该网站
+- **new HttpPost()**:创建一个HttpPost对象，发起POST请求
+- **List\<NameValuePair\>**:创建一个NameValuePair集合，用来存放待POST的参数，并将这个参数集合传入到一个UrlEncodedFormEntity中
+- **httpPost.setEntity(entity)**:将构建好的UrlEncodedFormEntity传入httpPost对象中
+- **httpResponse.getStatusLine().getStatusCode()**:获取服务器返回的状态码
+
+###XML
+
+####XmlPullParser
+
+- **XmlPullParserFactory.newInstance()**:获取一个XmlPullParserFactory实例
+- **factory.newPullParser()**:创建一个XmlPullParser对象
+- **xmlPullParser.setInput(new StringReader(xmlData))**:将服务器返回的XML数据设置到XmlPullParser对象中
+- **xmlPullParser.getEventType()**:获取当前的解析事件
+- **XmlPullParser.END_DOCUMENT**:解析事件为该值时，证明解析完成
+- **XmlPullParser.START_TAG**:XML一个解析事件开始的标签
+- **XmlPullParser.END_TAG**:XML一个解析事件结束的标签
+- **xmlPullParser.getName()**:获取当前结点的名字
+- **xmlPullParser.nextText()**:获取当前结点的内容
+- **xmlPullParser.next()**:获取下一个解析事件
+
+####SAXParse
+
+- **DefaultHandler类**:继承该类并重写父类的五个方法
+- **startDocument()**:在开始解析XML时调用
+- **startElement()**:在开始解析某个结点时调用，参数中localName为当前结点名称
+- **characters()**:在获取节点中内容的时候调用，需要注意一些换行符的解析也会调用该方法，应做好控制
+- **endElement()**:在完成解析某个结点的时候调用
+- **endDocument()**:在完成整个XML解析的时候调用
+- **SAXParserFactory.newInstance()**:获取SAXParserFactory对象
+- **factory.newSAXParser().getXMLReader()**:获取XMLReader对象
+- **xmlReader.setContentHandler(handler)**:将DefaultHandler实例设置到XMLReader中
+- **xmlReader.parse(new InputSource(new StringReader(xmlData)))**:开始对XML数据进行解析
+
+###JSON
+
+####JSONObject
+
+- **new JSONArray(jsonData)**:将网络发回的数据传入到JSONArray对象中
+- **jsonArray.getJSONObject(i)**:取出每一个jsonObject对象
+- **jsonObject.getString("id")**:根据标签名从jsonObject对象中取出对应数据
+
+####GSON
+
+- **GSON可以自动将一段JSON格式的字符串映射成一个对象**：创建一个自定义类，并且声明与JSON字段名同名的变量，即可通过GSON自动将JSON解析成该类对象
+- **gson.fromJson(jsonData, new TypeToken<List<App>>() {}.getType())**:通过该方法即可将JSON数组解析成需求类型的对象
+
+
+###Layout
+
+- **\<WebView\>**:用于显示网页的webview控件
+- **\<ScrollView\>**:允许以滚动形式查看屏幕外的那部分内容
+
+###AndroidManifest
+
+- **\<uses-permission android:name="android.permission.INTERNET" /\>**:获取手机联网的权限
 
 
 

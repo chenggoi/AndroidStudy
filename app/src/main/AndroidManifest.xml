@@ -7,6 +7,7 @@
     <uses-permission android:name="android.permission.RECEIVE_SMS" />
     <uses-permission android:name="android.permission.SEND_SMS" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:allowBackup="true"
@@ -62,13 +63,15 @@
         <activity
             android:name=".DialogActivity"
             android:theme="@android:style/Theme.Dialog" />
-        <activity android:name=".Service.ServiceActivity">
+        <activity android:name=".HttpTest.HttpURLConnectionActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
 
+        <activity android:name=".Webview.WebviewActivity" />
+        <activity android:name=".Service.ServiceActivity" />
         <activity android:name=".Thread.ThreadActivity" />
         <activity android:name=".PlayVideo.PlayVideoActivity" />
         <activity android:name=".CheoosePic.PicActivity" />
