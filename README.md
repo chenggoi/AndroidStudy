@@ -556,6 +556,21 @@ private Handler handler = new Handler() {
 
 - **\<uses-permission android:name="android.permission.INTERNET" /\>**:获取手机联网的权限
 
+##2016年8月12日
+
+###LBS
+
+- **getSystemService(Context.LOCATION_SERVICE)**:获取LocationManager实例
+- **locationManager.getProviders(true)**:获取可以使用的位置提供器，三种位置提供器分别为**NETWORK_PROVIDER、GPS_PROVIDER、PASSIVE_PROVIDER**
+- **locationManager.getLastKnownLocation(provider)**:将位置提供器传入到该方法，得到一个Location对象
+- **location.getLatitude()**:获取纬度信息
+- **location.getLongitude()**:获取经度信息
+- **locationManager.requestLocationUpdates(provider, 5000, 100, locationListener)**:随时更新位置信息，四个参数为**位置提供器，刷新时间间隔，刷新距离间隔，LocationListener实例**
+
+###AndroidManifest
+
+- **\<uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" /\>**:获取设备当前的位置信息的权限
+
 
 
 
