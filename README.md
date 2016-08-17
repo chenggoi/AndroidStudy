@@ -571,6 +571,10 @@ private Handler handler = new Handler() {
 
 - **\<uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" /\>**:获取设备当前的位置信息的权限
 
+##2016年8月17日
+
+###实战酷欧天气
+
 
 
 
