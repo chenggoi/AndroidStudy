@@ -64,13 +64,14 @@
         <activity
             android:name=".DialogActivity"
             android:theme="@android:style/Theme.Dialog" />
-        <activity android:name=".Location.LocationActivity">
+        <activity android:name=".CoolWeather.activity.ChooseAreaActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
 
+        <activity android:name=".Location.LocationActivity" />
         <activity android:name=".HttpTest.HttpURLConnectionActivity" />
         <activity android:name=".Webview.WebviewActivity" />
         <activity android:name=".Service.ServiceActivity" />
