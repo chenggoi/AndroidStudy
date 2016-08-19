@@ -7,6 +7,10 @@ import com.chenggoi.androidstudy.CoolWeather.model.CoolWeatherDB;
 import com.chenggoi.androidstudy.CoolWeather.model.County;
 import com.chenggoi.androidstudy.CoolWeather.model.Province;
 
+import org.json.JSONObject;
+
+import java.util.Iterator;
+
 /**
  * Created by chenggoi on 16-8-17.
  */
@@ -14,17 +18,19 @@ import com.chenggoi.androidstudy.CoolWeather.model.Province;
 public class Utility {
     public synchronized static boolean handleProvincesResponse(CoolWeatherDB coolWeatherDB, String response) {
         if (!TextUtils.isEmpty(response)) {
-            String[] allProvinces = response.split(",");
-            if (allProvinces != null && allProvinces.length > 0) {
-                for (String p : allProvinces) {
-                    String[] array = p.split("\\|");
-                    Province province = new Province();
-                    province.setProvinceCode(array[0]);
-                    province.setProvinceName(array[1]);
-
-                    coolWeatherDB.saveProvince(province);
+            try {
+                JSONObject jsonObject = new JSONObject(response);
+                if (jsonObject != null && jsonObject.length() > 0) {
+                    for (int i = 0; i < jsonObject.length(); i++) {
+                        Province province = new Province();
+                        province.setProvinceCode(Integer.toString(10101 + i));
+                        province.setProvinceName(jsonObject.getString(Integer.toString(10101 + i)));
+                        coolWeatherDB.saveProvince(province);
+                    }
+                    return true;
                 }
-                return true;
+            } catch (Exception e) {
+                e.printStackTrace();
             }
         }
         return false;
@@ -32,38 +38,43 @@ public class Utility {
 
     public static boolean handleCitiesResponse(CoolWeatherDB coolWeatherDB, String response, int provinceId) {
         if (!TextUtils.isEmpty(response)) {
-            String[] allCities = response.split(",");
-            if (allCities != null && allCities.length > 0) {
-                for (String c : allCities) {
+            try {
+                JSONObject jsonObject = new JSONObject(response);
+                Iterator<String> k = jsonObject.keys();
+                while (k.hasNext()) {
+                    String key = k.next();
                     City city = new City();
-                    String[] array = c.split("\\|");
-                    city.setCityCode(array[0]);
-                    city.setCityName(array[1]);
+                    city.setCityCode(key);
+                    city.setCityName(jsonObject.getString(key));
                     city.setProvinceId(provinceId);
-
                     coolWeatherDB.saveCity(city);
                 }
-                return true;
+            } catch (Exception e) {
+                e.printStackTrace();
             }
+            return true;
         }
         return false;
     }
 
     public static boolean handleCountiesResponse(CoolWeatherDB coolWeatherDB, String response, int cityId) {
         if (!TextUtils.isEmpty(response)) {
-            String[] allCounties = response.split(",");
-            if (allCounties != null && allCounties.length > 0) {
-                for (String c : allCounties) {
-                    String[] array = c.split("\\|");
+            try {
+                JSONObject jsonObject = new JSONObject(response);
+                Iterator<String> k = jsonObject.keys();
+                while (k.hasNext()) {
+                    String key = k.next();
                     County county = new County();
-                    county.setCountyCode(array[0]);
-                    county.setCountyName(array[1]);
+                    county.setCountyCode(key);
+                    county.setCountyName(jsonObject.getString(key));
                     county.setCityId(cityId);
 
                     coolWeatherDB.saveCounty(county);
                 }
-                return true;
+            } catch (Exception e) {
+                e.printStackTrace();
             }
+            return true;
         }
         return false;
     }

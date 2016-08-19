@@ -55,7 +55,7 @@ public class ChooseAreaActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.choose_area);
         listView = (ListView) findViewById(R.id.list_view);
-        titleText = (TextView) findViewById(R.id.title_edit);
+        titleText = (TextView) findViewById(R.id.title_text);
         adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, dataList);
         listView.setAdapter(adapter);
         coolWeatherDB = CoolWeatherDB.getInstance(this);
@@ -68,6 +68,8 @@ public class ChooseAreaActivity extends Activity {
                 } else if (currentLevel == LEVEL_CITY) {
                     selectedCity = cityList.get(position);
                     queryCounties();
+                } else if (currentLevel == LEVEL_COUNTY) {
+                    selectedCounty = countyList.get(position);
                 }
             }
         });
@@ -118,17 +120,22 @@ public class ChooseAreaActivity extends Activity {
             titleText.setText(selectedCity.getCityName());
             currentLevel = LEVEL_COUNTY;
         } else {
-            queryFromServer(selectedCity.getCityCode(), "county");
+            queryFromServer(selectedProvince.getProvinceCode() + selectedCity.getCityCode(), "county");
         }
     }
 
     private void queryFromServer(final String code, final String type) {
-        String address;
-        if (!TextUtils.isEmpty(code)) {
-            address = WEATHER_ADDRESS + "provshi/" + code + ".html";
-        } else {
+        String address = "";
+        if (TextUtils.isEmpty(code)) {
             address = WEATHER_ADDRESS + "china.html";
+        } else if ("city".equals(type)) {
+            address = WEATHER_ADDRESS + "provshi/" + code + ".html";
+        } else if ("county".equals(type)) {
+            address = WEATHER_ADDRESS + "station/" + code + ".html";
+        } else {
+            address = "http://m.weather.com.cn/data/" + code + ".html";
         }
+        showProgressDialog();
         HttpUtil.sendHttpRequest(address, new HttpCallbackListener() {
             @Override
             public void onFinish(String response) {
@@ -165,6 +172,7 @@ public class ChooseAreaActivity extends Activity {
                     public void run() {
                         closeProgressDialog();
                         Toast.makeText(ChooseAreaActivity.this, "Failed", Toast.LENGTH_LONG).show();
+
                     }
                 });
             }
