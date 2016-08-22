@@ -24,13 +24,16 @@ public class HttpUtil {
                     connection.setConnectTimeout(8000);
                     InputStream in = connection.getInputStream();
                     BufferedReader reader = new BufferedReader(new InputStreamReader(in));
-                    StringBuilder response = new StringBuilder();
-                    String line;
-                    while ((line = reader.readLine()) != null) {
-                        response.append(line);
-                    }
+//                    StringBuilder response = new StringBuilder();
+//                    String line;
+                    char[] chars = new char[1024 * 1024];
+                    int len = reader.read(chars);
+                    String response = String.valueOf(chars, 0, len);// not use readLine to avoid EOF error
+//                    while ((line = reader.readLine()) != null) {
+//                        response.append(line);
+//                    }
                     if (listener != null) {
-                        listener.onFinish(response.toString());
+                        listener.onFinish(response);
                     }
                 } catch (Exception e) {
                     if (listener != null) {

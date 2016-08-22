@@ -71,6 +71,7 @@
             </intent-filter>
         </activity>
 
+        <activity android:name=".CoolWeather.activity.WeatherActivity" />
         <activity android:name=".Location.LocationActivity" />
         <activity android:name=".HttpTest.HttpURLConnectionActivity" />
         <activity android:name=".Webview.WebviewActivity" />
