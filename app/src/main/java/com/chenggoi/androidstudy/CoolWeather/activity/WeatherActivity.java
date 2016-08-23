@@ -6,12 +6,12 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.chenggoi.androidstudy.CoolWeather.service.AutoUpdateService;
 import com.chenggoi.androidstudy.CoolWeather.util.HttpCallbackListener;
 import com.chenggoi.androidstudy.CoolWeather.util.HttpUtil;
 import com.chenggoi.androidstudy.CoolWeather.util.Utility;
@@ -81,10 +81,6 @@ public class WeatherActivity extends Activity implements View.OnClickListener {
         refreshWeather.setOnClickListener(this);
     }
 
-    private void queryWeatherCode(String countyCode) {
-
-    }
-
     private void queryWeatherInfo(String weatherCode) {
         String address = "http://www.weather.com.cn/data/cityinfo/" + weatherCode + ".html";
         queryFromServer(address);
@@ -126,5 +122,7 @@ public class WeatherActivity extends Activity implements View.OnClickListener {
         currentDateText.setText(prefs.getString("current_date", ""));
         weatherInfoLayout.setVisibility(View.VISIBLE);
         cityNameText.setVisibility(View.VISIBLE);
+        Intent intent = new Intent(this, AutoUpdateService.class);
+        startService(intent);
     }
 }

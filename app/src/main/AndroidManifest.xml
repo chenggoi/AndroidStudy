@@ -19,6 +19,7 @@
 
         <service android:name=".Service.MyService" />
         <service android:name=".Service.MyIntentService" />
+        <service android:name=".CoolWeather.service.AutoUpdateService" />
 
         <receiver android:name=".broadcasts.BootCompleteReceiver">
             <intent-filter>
@@ -37,6 +38,7 @@
                 <action android:name="com.chenggoi.androidstudy.MY_BROADCAST" />
             </intent-filter>
         </receiver>
+        <receiver android:name=".CoolWeather.receiver.AutoUpdateReceiver" />
 
         <activity
             android:name=".MainActivity"
